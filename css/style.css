@@ -1,4 +1,73 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
 body {
     margin: 0;
     padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.container, main {
+    width: 80%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+/* Header */
+header {
+    background-color: #c06;
+    padding: 20px;
+    color: beige;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+/* Nav */
+
+#nav-con {
+    width: 60%;
+    text-align: center;
+}
+
+nav {
+    margin: 20px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+nav p {
+    margin-top: 0;
+    max-width: 100%;
+}
+
+nav a {
+    display: block;
+    padding: 10px;
+}
+
+/* main */
+
+main section {
+    text-align: center;
+    border: 1px solid black;
+    margin: 10px;
+}
+
+main section input {
+    margin-bottom: 20px;
+}
+
+main #math-result {
+    display: none;
+    background-color: lightgray;
+}
+
+/* footer */
+footer {
+    background-color: #c06;
+    color: beige;
+    text-align: center;
+    margin-top: 30px;
 }

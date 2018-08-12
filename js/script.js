@@ -1,3 +1,8 @@
+var script = document.createElement('script');
+script.src = 'http://code.jquery.com/jquery-1.11.0.min.js';
+script.type = 'text/javascript';
+document.getElementsByTagName('head')[0].appendChild(script);
+
 var buttons = document.getElementsByTagName('button');
 var errorMessage = 'The expression is invalid.';
 var isDigit = char => (char >= '0' && char <= '9');
@@ -17,7 +22,8 @@ function EvalArithmetic(operators) {
 
     var result = Arithmetic(inp)
     if (result !== undefined) {
-        document.getElementById('ar_input').value = Arithmetic(inp)
+        document.getElementById('math-result').textContent = Arithmetic(inp)
+        $('#math-result').slideDown();
     }
 }
 

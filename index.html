@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!-- jQuery -->
+    <script src="js/script.js" async></script>
     <title>Math JS</title>
 </head>
 
@@ -14,58 +16,91 @@
         <div class="container">
             <h1>Math page</h1>
             <p>Welcome! I've designed this page to practice my JavaScript skills. Here you can do all sorts of calculations
-                with simple and advanced math. Choose a category:</p>
+                with simple and advanced math.</p>
         </div>
     </header>
 
-    <nav>
-        <div class="container">
+    <div class="container" id="nav-con">
+        <p>Choose a category:</p>
+        <nav>
             <a href="#arithmetic">Basic arithmetic</a>
             <a href="#reduction">Fraction reduction</a>
             <a href="#time">Time difference</a>
             <a href="#bin">Binary conversion</a>
             <a href="#hex">Hexadecimal conversion</a>
-        </div>
-    </nav>
+        </nav>
+    </div>
 
     <main>
-        <div class="container">
-            <section id="arithmetic">
+        <section id="arithmetic">
+            <div id="math">
                 <h3>Basic arithmetic</h3>
                 <input type="text" placeholder="Example: 2+3+12/8" id="ar_input">
-                <button type="submit" id="ar_but">Go</button>
-            </section>
-            <section id="reduction">
+                <button type="submit" id="ar_but">Go</button><br>
+                <span id="math-result"></span>
+            </div>
+
+            <div id="reduction">
                 <h3>Fraction reduction</h3>
                 <input type="text" placeholder="Example: 12/8" id="fr_input">
                 <button type="submit" id="fr_button">Go</button>
-            </section>
-            <section id="time">
+            </div>
+        </section>
+
+        <section id="time">
+            <div id="datediff">
                 <h3>Date difference</h3>
                 From:
-                <input type="date" placeholder="Example: 12.8.2019."> To:
+                <input type="date" placeholder="Example: 12.8.2019.">
+                <br>To:
                 <input type="date" placeholder="Example: 12.8.2019.">
                 <button type="submit">Go</button>
-            </section>
-            <section id="bin">
-                <h3>Binary conversion</h3>
+            </div>
+        </section>
+
+        <section id="conversion">
+            <div id="bin-dec">
+                <h3>Binary-to-decimal conversion</h3>
+
                 Binary:
                 <input type="text" placeholder="Example: 1001">
                 <button type="submit">Go</button>
-                Decimal:
+                
+                <br>Decimal:
                 <input type="text" placeholder="Example: 9.">
                 <button type="submit">Go</button>
-            </section>
-            <section id="hex">
-                <h3>Hexadecimal conversion</h3>
+                
+                <br><button type="button">Switch</button>
+            </div>
+
+            <div id="hex-dec">
+                <h3>Hexadecimal-to-decimal conversion</h3>
+
                 Hexadecimal:
                 <input type="text" placeholder="Example: 1C">
                 <button type="submit">Go</button>
-                Decimal:
+
+                <br>Decimal:
                 <input type="text" placeholder="Example: 28">
                 <button type="submit">Go</button>
-            </section>
-        </div>
+                
+                <br><button type="button">Switch</button>
+            </div>
+
+            <div id="hex-bin">
+                <h3>Hexadecimal-to-binary conversion</h3>
+
+                Hexadecimal:
+                <input type="text" placeholder="Example: 1C">
+                <button type="submit">Go</button>
+
+                <br>Decimal:
+                <input type="text" placeholder="Example: 28">
+                <button type="submit">Go</button>
+                
+                <br><button type="button">Switch</button><br><br>
+            </div>
+        </section>
     </main>
 
     <footer>
@@ -73,7 +108,6 @@
             <p>Magazin&copy; 2018</p>
         </div>
     </footer>
-    <script src="js/script.js"></script>
 </body>
 
 </html>
