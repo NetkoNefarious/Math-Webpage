@@ -53,13 +53,14 @@ main section {
     text-align: center;
     border: 1px solid black;
     margin: 10px;
+    padding: 10px;
 }
 
 main section input {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
-main #math-result {
+main .result {
     display: none;
     background-color: lightgray;
 }

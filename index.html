@@ -6,9 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/style.css">
+    <title>Math JS</title>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!-- jQuery -->
     <script src="js/script.js" async></script>
-    <title>Math JS</title>
+    <script src="js/event.js" async></script>
 </head>
 
 <body>
@@ -35,9 +37,9 @@
         <section id="arithmetic">
             <div id="math">
                 <h3>Basic arithmetic</h3>
-                <input type="text" placeholder="Example: 2+3+12/8" id="ar_input">
+                <input type="text" placeholder="Example: 2+3+12/8" id="ar_input" autofocus>
                 <button type="submit" id="ar_but">Go</button><br>
-                <span id="math-result"></span>
+                <span id="math-result" class="result"></span>
             </div>
 
             <div id="reduction">
@@ -51,10 +53,11 @@
             <div id="datediff">
                 <h3>Date difference</h3>
                 From:
-                <input type="date" placeholder="Example: 12.8.2019.">
+                <input type="date" id='date1' placeholder="Example: 12.8.2019.">
                 <br>To:
-                <input type="date" placeholder="Example: 12.8.2019.">
-                <button type="submit">Go</button>
+                <input type="date" id='date2' placeholder="Example: 12.8.2019.">
+                <button type="submit">Go</button><br>
+                <span id="time-result" class="result"></span>
             </div>
         </section>
 
@@ -63,42 +66,44 @@
                 <h3>Binary-to-decimal conversion</h3>
 
                 Binary:
-                <input type="text" placeholder="Example: 1001">
+                <input type="text" placeholder="Example: 1001" id="bindec_input">
                 <button type="submit">Go</button>
                 
                 <br>Decimal:
-                <input type="text" placeholder="Example: 9.">
+                <input type="text" placeholder="Example: 9." id="decbin_input">
                 <button type="submit">Go</button>
                 
-                <br><button type="button">Switch</button>
+                <br><button type="button">Switch</button><br>
+                <span id="bindec-result" class="result"></span>
             </div>
 
             <div id="hex-dec">
                 <h3>Hexadecimal-to-decimal conversion</h3>
 
                 Hexadecimal:
-                <input type="text" placeholder="Example: 1C">
+                <input type="text" placeholder="Example: 1C" id="hexdec_input">
                 <button type="submit">Go</button>
 
                 <br>Decimal:
-                <input type="text" placeholder="Example: 28">
+                <input type="text" placeholder="Example: 28" id="dechex_input">
                 <button type="submit">Go</button>
                 
-                <br><button type="button">Switch</button>
+                <br><button type="button" id='hdswitch-button'>Switch</button>
             </div>
 
             <div id="hex-bin">
                 <h3>Hexadecimal-to-binary conversion</h3>
 
                 Hexadecimal:
-                <input type="text" placeholder="Example: 1C">
-                <button type="submit">Go</button>
+                <input type="text" placeholder="Example: 1C" id="hexbin_input">
+                <button type="submit" id="hexbin_button">Go</button>
 
-                <br>Decimal:
-                <input type="text" placeholder="Example: 28">
-                <button type="submit">Go</button>
+                <br>Binary:
+                <input type="text" placeholder="Example: 28" id="binhex_input">
+                <button type="submit" id="binhex_button">Go</button>
                 
-                <br><button type="button">Switch</button><br><br>
+                <br><button type="button">Switch</button><br>
+                <span id="hexbin_result"></span>
             </div>
         </section>
     </main>
