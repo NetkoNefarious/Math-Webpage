@@ -56,6 +56,10 @@ function EvalReduction(operators) {
     'use strict'
     var inp = document.getElementById('fr_input');
 
+    if (inp.value === '') {
+        return;
+    }
+
     // Remove the point (for positive integers)
     var pointIndex = operators.indexOf('.');
     if (pointIndex > -1) {
