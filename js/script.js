@@ -5,6 +5,15 @@
 var errorMessage = 'The expression is invalid.';
 var isDigit = char => (char >= '0' && char <= '9');
 var operators = ['+', '-', '*', '/', '(', ')', '.'];
+var ErrorHandler = function (fun, num) {
+    try {
+        return fun(num);
+    }
+
+    catch (ex) {
+        alert(errorMessage);
+    }
+}
 
 // -------- //
 // BASIC ARITHMETIC //
@@ -14,15 +23,10 @@ function EvalArithmetic(operators) {
     var inp = document.getElementById('ar_input');
     
     if (!CheckValidity(inp.value, operators, false)) {
-        alert(errorMessage);
-        return;
+        throw 'Invalid expression!';
     }
 
-    var result = Arithmetic(inp.value)
-    if (result !== undefined) {
-        document.getElementById('math-result').innerText = result;
-        $('#math-result').show('slow');
-    }
+    return ErrorHandler(eval, inp.value);
 }
 
 // Helper function
@@ -44,15 +48,6 @@ function CheckValidity(inp, operators, isFraction) {
     return true;
 }
 
-// Helper function (evaluates arithmetic)
-function Arithmetic(equation) {
-    try {
-        return eval(equation);
-    } catch (ex) {
-        alert(errorMessage);
-    }
-}
-
 // -------- //
 // FRACTION REDUCTION //
 // -------- //
@@ -68,23 +63,16 @@ function EvalReduction(operators) {
     }
 
     if (!CheckValidity(inp.value, operators, true)) {
-        alert(errorMessage);
-        return;
+        throw 'Invalid expression!';
     }
 
     var inp_ar = inp.value.split('/');
-    try {
-        // Calculating the numerator and denominator
-        inp_ar[0] = Arithmetic(inp_ar[0]);
-        inp_ar[1] = Arithmetic(inp_ar[1]);
+    inp_ar[0] = ErrorHandler(eval, inp_ar[0]);
+    inp_ar[1] = ErrorHandler(eval, inp_ar[1]);
+    var commonDenom = LeastCommonDenom(inp_ar[0], inp_ar[1]);
 
-        var commonDenom = LeastCommonDenom(inp_ar[0], inp_ar[1]);
-    } catch (ex) {
-        alert(errorMessage);
-        return;
-    }
     // Vraca razlomak
-    inp.value = ((inp_ar[0] / commonDenom) + '/' + (inp_ar[1] / commonDenom));
+    return ((inp_ar[0] / commonDenom) + '/' + (inp_ar[1] / commonDenom));
 }
 
 function LeastCommonDenom(x, y) { // Euklidov algoritam
@@ -110,7 +98,58 @@ function EvalDate() {
     var date2 = new Date(document.getElementById('date2').value);
 
     var timeDiff = date2.getTime() - date1.getTime();
-    document.getElementById('time-result').textContent = (timeDiff / 1000 / 60 / 60 / 24) + ' days';
-
-    $('#time-result').show('slow');
+    if (!isNaN(timeDiff)) {
+        return (timeDiff / 1000 / 60 / 60 / 24) + ' days';
+    }
 }
+
+// #region EVENT HANDLERS AND LISTENERS //
+var buttons = document.getElementsByTagName('button');
+
+// Arithmetic
+function WriteAr() {
+    var result = ErrorHandler(EvalArithmetic, operators);
+    if (result !== undefined) {
+        document.getElementById('math-result').innerText = result;
+        $('#math-result').slideDown();
+    }
+}
+// Wrapper function to avoid onclick triggering on refresh
+buttons[0].onclick = function () { WriteAr(); }
+// If user presses Enter, evaluate expression
+document.getElementById('ar_input').onkeydown = function (event) {
+    if (event.key === 'Enter') {
+        WriteAr();
+    }
+}
+
+// Fractions
+function WriteFr() {
+    var result = ErrorHandler(EvalReduction, operators);
+    if (result !== undefined) {
+        document.getElementById('fr_input').value = result;
+    }
+}
+buttons[1].onclick = function () { WriteFr(); }
+document.getElementById('fr_input').onkeydown = function (event) {
+    if (event.key === 'Enter') {
+        WriteFr();
+    }
+}
+
+// Date
+function WriteDate() {
+    var result = EvalDate();
+    if (result !== undefined) {
+        document.getElementById('time-result').textContent = result;
+        $('#time-result').slideDown();
+    }
+}
+buttons[2].onclick = function () { WriteDate(); }
+document.getElementById('date2').onkeydown = function (event) {
+    if (event.key === 'Enter') {
+        WriteDate();
+    }
+}
+
+//#endregion
