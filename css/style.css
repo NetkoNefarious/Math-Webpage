@@ -56,7 +56,7 @@ main section {
     padding: 10px;
 }
 
-main section input {
+main section input, main section button {
     margin-bottom: 10px;
 }
 
@@ -71,4 +71,8 @@ footer {
     color: beige;
     text-align: center;
     margin-top: 30px;
+}
+
+@media (min-width: 700px) {
+
 }

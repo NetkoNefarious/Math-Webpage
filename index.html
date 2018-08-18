@@ -25,12 +25,18 @@
 
     <div class="container" id="nav-con">
         <p>Choose a category:</p>
-        <nav>
+        <nav id="basic">
+            <h3>Arithmetic</h3>
             <a href="#arithmetic">Basic arithmetic</a>
             <a href="#reduction">Fraction reduction</a>
-            <a href="#time">Time difference</a>
-            <a href="#bin">Binary conversion</a>
-            <a href="#hex">Hexadecimal conversion</a>
+            <a href="#time">Date difference</a>
+        </nav>
+
+        <nav id="conversion">
+            <h3>Conversion</h3>
+            <a href="#bin-dec">Binary-decimal</a>
+            <a href="#hex-dec">Hexadecimal-decimal</a>
+            <a href="#hex-bin">Hexadecimal-binary</a>
         </nav>
     </div>
 
@@ -66,11 +72,11 @@
             <div id="bin-dec">
                 <h3>Binary-to-decimal conversion</h3>
 
-                Binary:
+                Bin:
                 <input type="text" placeholder="Example: 1001" id="bindec_input">
                 <button type="submit">Go</button>
                 
-                <br>Decimal:
+                <br>Dec:
                 <input type="text" placeholder="Example: 9." id="decbin_input">
                 <button type="submit">Go</button>
                 
@@ -81,11 +87,11 @@
             <div id="hex-dec">
                 <h3>Hexadecimal-to-decimal conversion</h3>
 
-                Hexadecimal:
+                Hex:
                 <input type="text" placeholder="Example: 1C" id="hexdec_input">
                 <button type="submit">Go</button>
 
-                <br>Decimal:
+                <br>Dec:
                 <input type="text" placeholder="Example: 28" id="dechex_input">
                 <button type="submit">Go</button>
                 
@@ -95,11 +101,11 @@
             <div id="hex-bin">
                 <h3>Hexadecimal-to-binary conversion</h3>
 
-                Hexadecimal:
+                Hex:
                 <input type="text" placeholder="Example: 1C" id="hexbin_input">
                 <button type="submit" id="hexbin_button">Go</button>
 
-                <br>Binary:
+                <br>Bin:
                 <input type="text" placeholder="Example: 28" id="binhex_input">
                 <button type="submit" id="binhex_button">Go</button>
                 

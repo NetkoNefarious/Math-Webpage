@@ -23,6 +23,11 @@ function EvalBinDec(num) {
 }
 
 function EvalDecBin(num) {
+    if (isNaN(num)) {
+        alert(errorMessage);
+        return;
+    }
+
     var result = '';
     while (num != 0) {
         result = (num % 2) + result;
@@ -59,14 +64,14 @@ function EvalHexDec(num) {
 }
 
 function EvalDecHex(num) {
+    if (isNaN(num)) {
+        alert(errorMessage);
+        return;
+    }
+    
     var result = '', rem;
     while (num != 0) {
         rem = num % 16;
-
-        if (isNaN(rem)) {
-            alert(errorMessage);
-            return;
-        }
 
         if (num > 9) {
             result = String.fromCharCode(rem + 55) + result;
