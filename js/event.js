@@ -39,65 +39,96 @@ document.getElementById('date2').onkeydown = function (event) {
 // Conversion (bin-dec)
 var bindec_input = document.getElementById('bindec_input');
 buttons[3].onclick = function () {
-    $('#bindec-result').text(result).show();
+    $('#bindec-result').text(EvalBinDec(bindec_input.value)).show();
 }
 bindec_input.onkeydown = function (event) {
     if (event.key === 'Enter') {
-        EvalBinDec(bindec_input.value);
+        $('#bindec-result').text(EvalBinDec(bindec_input.value)).show();
     }
 }
 
 // Conversion (dec-bin)
 var decbin_input = document.getElementById('decbin_input');
 buttons[4].onclick = function () {
-    EvalDecBin(parseInt(decbin_input.value));
+    $('#bindec-result').text(EvalDecBin(parseInt(decbin_input.value))).show();
 }
 decbin_input.onkeydown = function (event) {
     if (event.key === 'Enter') {
-        EvalDecBin(parseInt(decbin_input.value));
+        $('#bindec-result').text(EvalDecBin(parseInt(decbin_input.value))).show();
     }
 }
 
 // Conversion (hex-dec)
-var hexdec_input = document.getElementById('hexdec_input');
-buttons[6].onclick = function () {
-    EvalHexDec(hexdec_input.value);
+function WriteHexDec () {
+    var hexdec = document.getElementById('hex-dec');
+    var hexdec_span = document.getElementById('result_hexdec');
+    var hexdec_input = document.getElementById('hexdec_input');
+    var result = EvalHexDec(hexdec_input.value);
+
+    // S create element i appendChild kreiranje
+    if ($('#hdswitch-button').is(':last-child')) {
+        var br = document.createElement('br'); hexdec.appendChild(br);
+
+        result_node = document.createElement('span');
+        result_node.id = 'result_hexdec';
+        result_node.innerText = result;
+        hexdec.appendChild(result_node);
+    }
+    else { hexdec_span.innerText = result; }
 }
+
+buttons[6].onclick = function () { WriteHexDec(); }
 hexdec_input.onkeydown = function (event) {
     if (event.key === 'Enter') {
-        EvalHexDec(hexdec_input.value);
+        WriteHexDec();
     }
 }
 
 // Conversion (dec-hex)
-var dechex_input = document.getElementById('dechex_input');
-buttons[7].onclick = function () {
-    EvalDecHex(parseInt(dechex_input.value));
+
+function WriteDecHex() {
+    var hexdec = document.getElementById('hex-dec');
+    var hexdec_span = document.getElementById('result_hexdec');
+    var dechex_input = document.getElementById('dechex_input');
+    var result = EvalDecHex(parseInt(dechex_input.value));
+
+    // S create element i appendChild kreiranje
+    if ($('#hdswitch-button').is(':last-child')) {
+        var br = document.createElement('br'); hexdec.appendChild(br);
+
+        result_node = document.createElement('span');
+        result_node.id = 'result_hexdec';
+        result_node.innerText = result;
+        hexdec.appendChild(result_node);
+    }
+    else { hexdec_span.innerText = result; }
 }
+
+buttons[7].onclick = function () { WriteDecHex(); }
 dechex_input.onkeydown = function (event) {
     if (event.key === 'Enter') {
-        EvalDecHex(parseInt(dechex_input.value));
+        WriteDecHex();
     }
 }
 
 // Conversion (hex-bin)
 var hexbin_input = document.getElementById('hexbin_input');
 buttons[9].onclick = function () {
-    EvalHexBin(hexbin_input.value);
+    $('#hexbin_result').text(EvalHexBin(hexbin_input.value)).show();
 }
 hexbin_input.onkeydown = function (event) {
     if (event.key === 'Enter') {
-        EvalHexBin(hexbin_input.value);
+        $('#hexbin_result').text(EvalHexBin(hexbin_input.value)).show();
     }
 }
 
 // Conversion (bin-hex)
 var binhex_input = document.getElementById('binhex_input');
 buttons[10].onclick = function () {
-    EvalBinHex(binhex_input.value);
+    $('#hexbin_result').text(EvalBinHex(binhex_input.value)).show();
 }
 binhex_input.onkeydown = function (event) {
     if (event.key === 'Enter') {
-        EvalBinHex(binhex_input.value);
+        $('#hexbin_result').text(EvalBinHex(binhex_input.value)).show();
     }
 }
