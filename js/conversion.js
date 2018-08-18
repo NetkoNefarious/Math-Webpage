@@ -46,36 +46,50 @@ function EvalDecHex(num) {
 // HEX-BIN //
 // -------- //
 
-function EvalHexBin(num) { return EvalDecBin(EvalHexDec(num).toString()); }
-function EvalBinHex(num) { return EvalDecHex(EvalBinDec(num).toString()); }
+function EvalHexBin(num) {
+    if (num === '') { return; }
+    return EvalDecBin(EvalHexDec(num).toString());
+}
+function EvalBinHex(num) {
+    if (num === '') { return; }
+    return EvalDecHex(EvalBinDec(num).toString());
+}
 
 // #region EVENT HANDLERS //
 // -------- //
 
 // Conversion (bin-dec)
-var bindec_input = document.getElementById('bindec_input');
-buttons[3].onclick = function () {
-    $('#bindec-result').text(ErrorHandler(EvalBinDec, bindec_input.value)).show();
+var WriteBinDec = function () {
+    var result = ErrorHandler(EvalBinDec, bindec_input.value);
+    if (!isNaN(result)) {
+        $('#bindec-result').text(result).show();
+    }
 }
+var bindec_input = document.getElementById('bindec_input');
+buttons[3].onclick = function () { WriteBinDec(); }
 bindec_input.onkeydown = function (event) {
     if (event.key === 'Enter') {
-        $('#bindec-result').text(ErrorHandler(EvalBinDec, bindec_input.value)).show();
+        WriteBinDec();
     }
 }
 
 // Conversion (dec-bin)
-var decbin_input = document.getElementById('decbin_input');
-buttons[4].onclick = function () {
-    $('#bindec-result').text(ErrorHandler(EvalDecBin, decbin_input.value)).show();
+var WriteDecBin = function () {
+    var result = ErrorHandler(EvalDecBin, decbin_input.value);
+    if (!isNaN(result)) {
+        $('#bindec-result').text(result).show();
+    }
 }
+var decbin_input = document.getElementById('decbin_input');
+buttons[4].onclick = function () { WriteDecBin(); }
 decbin_input.onkeydown = function (event) {
     if (event.key === 'Enter') {
-        $('#bindec-result').text(ErrorHandler(EvalDecBin, decbin_input.value)).show();
+        WriteDecBin();
     }
 }
 
 // Conversion (hex-dec)
-function WriteHexDec () {
+var WriteHexDec = function () {
     var hexdec_input = document.getElementById('hexdec_input');
     var result = ErrorHandler(EvalHexDec, hexdec_input.value);
     if (result === undefined || isNaN(result)) {
@@ -97,7 +111,6 @@ function WriteHexDec () {
         hexdec_span.innerText = result;
     }
 }
-
 buttons[6].onclick = function () { WriteHexDec(); }
 hexdec_input.onkeydown = function (event) {
     if (event.key === 'Enter') {
@@ -106,7 +119,7 @@ hexdec_input.onkeydown = function (event) {
 }
 
 // Conversion (dec-hex)
-function WriteDecHex() {
+var WriteDecHex = function () {
     var dechex_input = document.getElementById('dechex_input');
     var result = ErrorHandler(EvalDecHex, dechex_input.value);
     if (result === undefined) {
@@ -128,7 +141,6 @@ function WriteDecHex() {
         hexdec_span.innerText = result;
     }
 }
-
 buttons[7].onclick = function () { WriteDecHex(); }
 dechex_input.onkeydown = function (event) {
     if (event.key === 'Enter') {
@@ -157,5 +169,4 @@ binhex_input.onkeydown = function (event) {
         $('#hexbin_result').text(ErrorHandler(EvalBinHex, binhex_input.value)).show();
     }
 }
-
 // #endregion
